@@ -10,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class RegistreComponent implements OnInit {
   token: any;
-
+  errorsRegistre:any;
   constructor( private userService:UserService , private router:Router) {  }
 
   ngOnInit(): void {
@@ -40,7 +40,10 @@ export class RegistreComponent implements OnInit {
       localStorage.setItem('nom', res['user_name']);
       this.router.navigate(["/"]);
     },(err)=>{
-      console.log('errors',err);
+       this.errorsRegistre = err.error.errors;
+      console.log('errors',err.error.errors);
+      console.log('Global Err',err);
+
     })
     console.log("data user Form", this.userformgrp.value)
 

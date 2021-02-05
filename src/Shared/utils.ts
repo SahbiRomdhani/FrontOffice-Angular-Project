@@ -1,4 +1,4 @@
-declare var $: any;
+import * as $ from "jquery"
 
 export class JqueryMethode{
 

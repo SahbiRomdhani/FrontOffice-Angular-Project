@@ -18,7 +18,11 @@
             </tr>
             <tr>
               <td><span class="required">*</span> E-Mail:</td>
-              <td><input class="large-field" type="text"  formControlName="email"></td>
+              <td><input class="large-field" type="text"  formControlName="email">
+                <div *ngIf="errorsRegistre.email"class="alert alert-danger">
+                  {{ errorsRegistre.email }}
+                </div>
+              </td>
             </tr>
             <tr>
               <td><span class="required">*</span> Telephone:</td>
@@ -419,7 +423,12 @@
           <tbody>
             <tr>
               <td><span class="required">*</span> Password:</td>
-              <td><input class="large-field" type="password" value="" formControlName="password"></td>
+              <td>
+                <input class="large-field" type="password" value="" formControlName="password">
+                <div *ngIf="errorsRegistre.password" class="alert alert-danger">
+                  {{ errorsRegistre.password }}
+                </div>
+              </td>
             </tr>
             <tr>
               <td><span class="required">*</span> Password Confirm:</td>
