@@ -39,7 +39,7 @@
             </tr>
             <tr>
               <td><span class="required" id="postcode-required">*</span> Post Code:</td>
-              <td><input class="large-field" type="text" value="" formControlName="code_postal"></td>
+              <td><input class="large-field" type="text" value="" formControlName="code"></td>
             </tr>
             <tr>
               <td><span  class="required">*</span> Country:</td>
@@ -423,7 +423,7 @@
             </tr>
             <tr>
               <td><span class="required">*</span> Password Confirm:</td>
-              <td><input class="large-field" type="password" value="" formControlName="passwordconfirm"></td>
+              <td><input class="large-field" type="password" value="" formControlName="password_confirmation"></td>
             </tr>
           </tbody>
         </table>
@@ -434,7 +434,7 @@
           <p>
             <input type="checkbox" value="1" name="agree">
             &nbsp; I have read and agree to the <a alt="Privacy Policy" href="#" class="colorbox cboxElement"><b>Privacy Policy</b></a> </p>
-          <input type="submit" class="button" value="Continue">
+          <input (click)="submit()" type="submit" class="button" value="Continue">
         </div>
       </div>
     </form>

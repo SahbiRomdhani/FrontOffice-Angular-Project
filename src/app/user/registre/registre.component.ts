@@ -1,3 +1,5 @@
+import {Router} from "@angular/router";
+import { UserService } from './../../../Shared/Services/UserService';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -7,8 +9,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./registre.component.css']
 })
 export class RegistreComponent implements OnInit {
+  token: any;
 
-  constructor() { }
+  constructor( private userService:UserService , private router:Router) {  }
 
   ngOnInit(): void {
   }
@@ -19,14 +22,26 @@ export class RegistreComponent implements OnInit {
     telephone: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
+    password_confirmation: new FormControl(''),
     rue: new FormControl(''),
-    region: new FormControl(''),
+    pays: new FormControl(''),
     ville: new FormControl(''),
-    codePostal: new FormControl(''),
+    code: new FormControl(''),
 
   });
 
   submit(){
+    this.userService.AddUser(this.userformgrp.value).subscribe((res)=>{
+      console.log("resultat",res)
+      this.token = res['access_token'];
+      localStorage.setItem('token', this.token);
+      localStorage.setItem('expires_in', res['expires_in']);
+      localStorage.setItem('user_id', res['user_id']);
+      localStorage.setItem('nom', res['user_name']);
+      this.router.navigate(["/"]);
+    },(err)=>{
+      console.log('errors',err);
+    })
     console.log("data user Form", this.userformgrp.value)
 
   }

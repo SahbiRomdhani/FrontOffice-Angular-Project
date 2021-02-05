@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { UserService } from './../../../Shared/Services/UserService';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -7,8 +9,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  token:string;
+  constructor(private userService:UserService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +20,17 @@ export class LoginComponent implements OnInit {
 
   });
   submit(){
+    this.userService.AddUser(this.userloginform.value).subscribe((res)=>{
+      console.log("resultat",res)
+      this.token = res['access_token'];
+      localStorage.setItem('token', this.token);
+      localStorage.setItem('expires_in', res['expires_in']);
+      localStorage.setItem('user_id', res['user_id']);
+      localStorage.setItem('nom', res['user_name']);
+      this.router.navigate(["/"]);
+    },(err)=>{
+      console.log('errors',err);
+    })
     console.log("user Login",this.userloginform.value)
   }
 }
