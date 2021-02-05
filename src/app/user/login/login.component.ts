@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   });
   submit(){
-    this.userService.AddUser(this.userloginform.value).subscribe((res)=>{
+    this.userService.login(this.userloginform.value).subscribe((res)=>{
       console.log("resultat",res)
       this.token = res['access_token'];
       localStorage.setItem('token', this.token);
