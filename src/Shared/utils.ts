@@ -1,10 +1,7 @@
-import * as $ from "jquery"
+declare var jQuery :any;
 
 export class JqueryMethode{
 
     slider(){
-        $(document).ready(function() {
-            $('#slideshow').nivoSlider();
-        });
     }
 }

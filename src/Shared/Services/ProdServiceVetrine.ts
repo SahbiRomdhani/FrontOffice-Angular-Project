@@ -29,6 +29,9 @@ export class ProduitServiceFront {
 
   }
 
+  acheter(data:any):Observable<any>{
+    return this.http.post(this.apiUrl+'acheter/',data)
+  }
 
   Produittbyid(id:any): Observable<any> {
 
